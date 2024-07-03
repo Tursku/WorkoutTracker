@@ -1,0 +1,5 @@
+An application to fetch data from Oura API and displaying workout data on a react based website. 
+
+Future plans:
+- create database to store data
+- Create docker container

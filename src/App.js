@@ -1,25 +1,19 @@
-import logo from './logo.svg';
+
+import React, { useState } from 'react';
+import OuraAuthorization from './OuraAuthorization';
+import OuraData from './OuraData';
 import './App.css';
 
-function App() {
+const App = () => {
+  const [accessToken, setAccessToken] = useState('');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Oura Ring Data</h1>
+      <OuraAuthorization setAccessToken={setAccessToken} />
+      {accessToken && <OuraData accessToken={accessToken} />}
     </div>
   );
-}
+};
 
 export default App;
