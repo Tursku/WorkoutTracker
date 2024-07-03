@@ -3,3 +3,4 @@ An application to fetch data from Oura API and displaying workout data on a reac
 Future plans:
 - create database to store data
 - Create docker container
+npm audt

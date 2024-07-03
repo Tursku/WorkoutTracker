@@ -1,8 +1,7 @@
-
+// App.js
 import React, { useState } from 'react';
-import OuraAuthorization from './OuraAuthorization';
+import OuraAuth from './OuraAuth';
 import OuraData from './OuraData';
-import './App.css';
 
 const App = () => {
   const [accessToken, setAccessToken] = useState('');
@@ -10,7 +9,7 @@ const App = () => {
   return (
     <div>
       <h1>Oura Ring Data</h1>
-      <OuraAuthorization setAccessToken={setAccessToken} />
+      <OuraAuth setAccessToken={setAccessToken} />
       {accessToken && <OuraData accessToken={accessToken} />}
     </div>
   );
