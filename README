@@ -1,4 +1,4 @@
-An application to fetch data from Oura API and displaying workout data on a react based website. 
+An application to fetch data from Oura API and displaying workout data on a react based app. 
 
 Future plans:
 - create database to store data
