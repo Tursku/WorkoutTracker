@@ -4,7 +4,7 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5555;
 const OURA_API_BASE_URL = 'https://api.ouraring.com/v2/';
 const BEARER_TOKEN = process.env.BEARER_TOKEN;
 

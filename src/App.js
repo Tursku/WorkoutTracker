@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import OuraService from './OuraService';
 
-
 console.log('Client ID:', process.env.REACT_APP_CLIENT_ID);
 console.log('Client Secret:', process.env.REACT_APP_CLIENT_SECRET);
 console.log('Redirect URI:', process.env.REACT_APP_REDIRECT_URI);
@@ -37,3 +36,4 @@ const App = () => {
 };
 
 export default App;
+
