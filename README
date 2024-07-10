@@ -1,5 +1,11 @@
 Work in process. An application to fetch data from Oura API and displaying workout data on a react based app. 
 
+To start the server:
+- node oura-backend/server.js
+
+To start the app:
+- npm start
+
 Future plans:
 - create database to store data
 - Create docker container
