@@ -13,11 +13,13 @@ app.use(express.json());
 
 app.get('/api/sleep', async (req, res) => {
   try {
+    console.log('Fetching sleep data...');
     const response = await axios.get(`${OURA_API_BASE_URL}usercollection/sleep`, {
       headers: {
         Authorization: `Bearer ${BEARER_TOKEN}`,
       },
     });
+    console.log('Sleep data fetched successfully');
     res.json(response.data);
   } catch (error) {
     console.error('Error fetching sleep data:', error);
