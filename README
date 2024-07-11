@@ -9,4 +9,3 @@ To start the app:
 Future plans:
 - create database to store data
 - Create docker container
-- When API is fully working, update to Oura APIv2
