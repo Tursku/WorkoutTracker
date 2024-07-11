@@ -1,27 +1,11 @@
 import React, { useState } from 'react';
-import OuraService from '../OuraDataFetch';
+import OuraDataFetch from '../OuraDataFetch';
 
-const SleepData = ({ setError }) => {
-  const [sleepData, setSleepData] = useState(null);
-
-  const fetchSleepData = () => {
-    OuraService.getSleepData()
-      .then(response => {
-        setSleepData(response.data);
-        setError(null);
-      })
-      .catch(error => {
-        setError('Failed to connect to server');
-        console.error('Error:', error);
-      });
-  };
-
+const SleepData = ({ sleepData }) => { //Data preview
   return (
     <div>
-      <button onClick={fetchSleepData}>Sleep Data</button>
       {sleepData && (
         <div>
-          <h2>Sleep Data</h2>
           <pre>{JSON.stringify(sleepData, null, 2)}</pre>
         </div>
       )}
@@ -29,4 +13,18 @@ const SleepData = ({ setError }) => {
   );
 };
 
+const fetchSleepData = ({ setError, setSleepData, clearWorkoutData }) => {
+  clearWorkoutData(); // Remember this :)
+  OuraDataFetch.getSleepData()
+    .then(response => {
+      setSleepData(response.data);
+      setError(null);
+    })
+    .catch(error => {
+      setError('Failed to connect to server');
+      console.error('Error:', error);
+    });
+};
+
 export default SleepData;
+export { fetchSleepData };

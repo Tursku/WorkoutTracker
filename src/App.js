@@ -1,21 +1,33 @@
 import React, { useState } from 'react';
-import SleepData from './Data/SleepData';
-import WorkoutData from './Data/WorkoutData';
-
-console.log('Client ID:', process.env.REACT_APP_CLIENT_ID);
-console.log('Client Secret:', process.env.REACT_APP_CLIENT_SECRET);
-console.log('Redirect URI:', process.env.REACT_APP_REDIRECT_URI);
-console.log('Bearer Token:', process.env.REACT_APP_BEARER_TOKEN);
+import SleepData, { fetchSleepData } from './Data/SleepData';
+import WorkoutData, { fetchWorkoutData } from './Data/WorkoutData';
 
 const App = () => {
+  const [sleepData, setSleepData] = useState(null);
+  const [workoutData, setWorkoutData] = useState(null);
   const [error, setError] = useState(null);
+
+  const clearSleepData = () => setSleepData(null);
+  const clearWorkoutData = () => setWorkoutData(null);
+
+
+  const handleFetchSleepData = () => { //SleepData.js fetch
+    fetchSleepData({ setError, setSleepData, clearWorkoutData });
+  };
+  const handleFetchWorkoutData = () => { //WorkoutData.js feth
+    fetchWorkoutData({ setError, setWorkoutData, clearSleepData });
+  };
 
   return (
     <div className="App">
-      <h1>Oura API data</h1>
-      <SleepData setError={setError} />
-      <WorkoutData setError={setError} />
+      <h1>Oura API Data</h1>
+      <div className="buttons">
+        <button onClick={handleFetchSleepData}>Sleep Data</button>
+        <button onClick={handleFetchWorkoutData}>Workout Data</button>
+      </div>
       {error && <p>{error}</p>}
+      <SleepData sleepData={sleepData} />
+      <WorkoutData workoutData={workoutData} />
     </div>
   );
 };

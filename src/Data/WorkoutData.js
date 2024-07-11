@@ -1,32 +1,30 @@
 import React, { useState } from 'react';
-import OuraService from '../OuraDataFetch';
+import OuraDataFetch from '../OuraDataFetch';
 
-const WorkoutData = ({ setError }) => {
-  const [workoutData, setWorkoutData] = useState(null);
-
-  const fetchWorkoutData = () => {
-    OuraService.getWorkoutData()
-      .then(response => {
-        setWorkoutData(response.data);
-        setError(null);
-      })
-      .catch(error => {
-        setError('Failed to connect to server');
-        console.error('Error:', error);
-      });
-  };
-
+const WorkoutData = ({ workoutData }) => { //Data preview
   return (
     <div>
-      <button onClick={fetchWorkoutData}>Workout Data</button>
       {workoutData && (
         <div>
-          <h2>Workout Data</h2>
-          <pre>{JSON.stringify(workoutData, null, 2)}</pre>
+          <pre>{JSON.stringify(workoutData, null, 2)}</pre> 
         </div>
       )}
     </div>
   );
 };
 
+const fetchWorkoutData = ({ setError, setWorkoutData, clearSleepData }) => {
+  clearSleepData(); // Remember this :)
+  OuraDataFetch.getWorkoutData()
+    .then(response => {
+      setWorkoutData(response.data);
+      setError(null);
+    })
+    .catch(error => {
+      setError('Failed to connect to server');
+      console.error('Error:', error);
+    });
+};
+
 export default WorkoutData;
+export { fetchWorkoutData };
