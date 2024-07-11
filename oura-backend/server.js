@@ -11,35 +11,35 @@ const BEARER_TOKEN = process.env.BEARER_TOKEN;
 app.use(cors());
 app.use(express.json());
 
+//Sleep API
 app.get('/api/sleep', async (req, res) => {
   try {
-    console.log('Fetching sleep data...');
     const response = await axios.get(`${OURA_API_BASE_URL}usercollection/sleep`, {
       headers: {
         Authorization: `Bearer ${BEARER_TOKEN}`,
       },
     });
-    console.log('Sleep data fetched successfully');
+    console.log('Sleep data success');
     res.json(response.data);
   } catch (error) {
-    console.error('Error fetching sleep data:', error);
-    res.status(500).json({ error: 'Failed to fetch sleep data' });
+    console.error('Sleep data error:', error);
+    res.status(500).json({ error: 'Sleep data unsuccesfull' });
   }
 });
 
+//Workout API
 app.get('/api/workout', async (req, res) => {
   try {
-    console.log('Fetching workout data...');
     const response = await axios.get(`${OURA_API_BASE_URL}usercollection/workout`, {
       headers: {
         Authorization: `Bearer ${BEARER_TOKEN}`,
       },
     });
-    console.log('Workout data fetched successfully');
+    console.log('Workout data succes');
     res.json(response.data);
   } catch (error) {
-    console.error('Error fetching workout data:', error);
-    res.status(500).json({ error: 'Failed to fetch workout data' });
+    console.error('Workout data error:', error);
+    res.status(500).json({ error: 'Workout data unsuccesfull' });
   }
 });
 
