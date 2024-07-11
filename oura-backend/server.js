@@ -27,6 +27,22 @@ app.get('/api/sleep', async (req, res) => {
   }
 });
 
+app.get('/api/workout', async (req, res) => {
+  try {
+    console.log('Fetching workout data...');
+    const response = await axios.get(`${OURA_API_BASE_URL}usercollection/workout`, {
+      headers: {
+        Authorization: `Bearer ${BEARER_TOKEN}`,
+      },
+    });
+    console.log('Workout data fetched successfully');
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching workout data:', error);
+    res.status(500).json({ error: 'Failed to fetch workout data' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });

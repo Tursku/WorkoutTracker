@@ -8,22 +8,38 @@ console.log('Bearer Token:', process.env.REACT_APP_BEARER_TOKEN);
 
 const App = () => {
   const [sleepData, setSleepData] = useState(null);
+  const [workoutData, setWorkoutData] = useState(null);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
+  const fetchSleepData = () => {
     OuraService.getSleepData()
       .then(response => {
         setSleepData(response.data);
+        setError(null);
       })
       .catch(error => {
         setError('Failed to fetch sleep data');
         console.error('Error:', error);
       });
-  }, []);
+  };
+
+  const fetchWorkoutData = () => {
+    OuraService.getWorkoutData()
+      .then(response => {
+        setWorkoutData(response.data);
+        setError(null);
+      })
+      .catch(error => {
+        setError('Failed to fetch workout data');
+        console.error('Error:', error);
+      });
+  };
 
   return (
     <div className="App">
       <h1>Oura Data</h1>
+      <button onClick={fetchSleepData}>Sleep Data</button>
+      <button onClick={fetchWorkoutData}>Workout Data</button>
       {error && <p>{error}</p>}
       {sleepData && (
         <div>
@@ -31,9 +47,14 @@ const App = () => {
           <pre>{JSON.stringify(sleepData, null, 2)}</pre>
         </div>
       )}
+      {workoutData && (
+        <div>
+          <h2>Workout Data</h2>
+          <pre>{JSON.stringify(workoutData, null, 2)}</pre>
+        </div>
+      )}
     </div>
   );
 };
 
 export default App;
-
