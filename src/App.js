@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {useState } from 'react';
 import OuraService from './OuraService';
 
 console.log('Client ID:', process.env.REACT_APP_CLIENT_ID);
@@ -15,6 +15,7 @@ const App = () => {
     OuraService.getSleepData()
       .then(response => {
         setSleepData(response.data);
+        setWorkoutData(null); //Remember these :)
         setError(null);
       })
       .catch(error => {
@@ -27,6 +28,7 @@ const App = () => {
     OuraService.getWorkoutData()
       .then(response => {
         setWorkoutData(response.data);
+        setSleepData(null);  //Remember these :)
         setError(null);
       })
       .catch(error => {
