@@ -20,7 +20,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Oura API Data</h1>
+      <h2>Oura API Data</h2>
       <div className="buttons">
         <button onClick={handleFetchSleepData}>Sleep Data</button>
         <button onClick={handleFetchWorkoutData}>Workout Data</button>
