@@ -27,7 +27,7 @@ app.get('/api/sleep', async (req, res) => {
   }
 });
 
-//Workout API
+//Workout API .
 app.get('/api/workout', async (req, res) => {
   try {
     const response = await axios.get(`${OURA_API_BASE_URL}usercollection/workout`, {
